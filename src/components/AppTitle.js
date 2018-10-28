@@ -13,7 +13,7 @@ const ReplaceIndexWithSymbol = ({ index, symbol, text }) => (
   </span>
 );
 
-function moveSymbolThroughCharacters(index, text, setIndex) {
+function moveSymbolThroughLetters(index, text, setIndex) {
   const nextLetter = text[index + 1];
   const isEndOfText = index >= text.length;
   if (!isEndOfText) {
@@ -27,9 +27,10 @@ function SymbolThroughText({ symbol, title, transitionSpeed = 600 }) {
   useEffect(
     () => {
       if (!(symbolIndex >= title.length)) {
-        setTimeout(() => {
-          moveSymbolThroughCharacters(symbolIndex, title, setSymbolIndex);
+        const timeoutId = setTimeout(() => {
+          moveSymbolThroughLetters(symbolIndex, title, setSymbolIndex);
         }, transitionSpeed);
+        return () => clearTimeout(timeoutId);
       }
     },
     [symbolIndex]
