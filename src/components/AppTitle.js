@@ -5,16 +5,13 @@ import Emoji from './Emoji';
 
 const SPACE = ' ';
 
-const ReplaceIndexWithSymbol = props => {
-  const { index, symbol, text } = props;
-  return (
-    <span>
-      {slice(text, 0, index)}
-      <Emoji label="curly_loop" spinning symbol={symbol} />
-      {slice(text, index + 1, text.length)}
-    </span>
-  );
-};
+const ReplaceIndexWithSymbol = ({ index, symbol, text }) => (
+  <span>
+    {slice(text, 0, index)}
+    <Emoji label="curly_loop" spinning symbol={symbol} />
+    {slice(text, index + 1, text.length)}
+  </span>
+);
 
 function moveSymbolThroughCharacters(index, text, setIndex) {
   const nextLetter = text[index + 1];
